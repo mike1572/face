@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 //Redux
 import {connect} from 'react-redux';
+import {getRecomPage} from '../redux/dataActions'
 
 // MUI
 import Button from '@mui/material/Button'
@@ -20,8 +21,12 @@ let Camera = (props) => {
             error => console.log(error)
         )
 
-        
+
     }, [])
+
+    let handleClick = () => {
+        props.getRecomPage()
+    }
 
     return (
         <Fragment>
@@ -34,6 +39,7 @@ let Camera = (props) => {
                     color="primary" 
                     variant="contained"
                     type="submit"
+                    onClick={handleClick}
 
                 >Get Music Recommendations</Button>
             </Box>
@@ -45,7 +51,8 @@ let Camera = (props) => {
 }
 
 Camera.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    getRecomPage: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
@@ -53,7 +60,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapActionsToProps = {
-
+    getRecomPage
 }
 
 
