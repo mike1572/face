@@ -1,9 +1,11 @@
 
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import * as faceapi from 'face-api.js'
 
 //Redux
 import {connect} from 'react-redux';
+import { TinyFaceDetectorOptions } from 'face-api.js'
 
 let Camera = (props) => {
 
@@ -15,6 +17,14 @@ let Camera = (props) => {
             error => console.log(error)
         )
     }, [])
+
+    document.getElementById('video').addEventListener('play', () => {
+        let canvas = document.getElementById('canvas')
+        setInterval(async () => {
+            const detections = await faceapi.detectAllFaces(document.getElementById('video'), new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
+            console.log(detections)
+        }, 100)
+    })
 
     return (
         <video id="video" width="720" height="
