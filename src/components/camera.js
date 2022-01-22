@@ -1,7 +1,11 @@
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
-let Camera = () => {
+//Redux
+import {connect} from 'react-redux';
+
+let Camera = (props) => {
 
     return (
         <h1>
@@ -10,4 +14,17 @@ let Camera = () => {
     )
 }
 
-export default Camera;
+Camera.propTypes = {
+    data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    data: state.data 
+})
+
+const mapActionsToProps = {
+
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(Camera);

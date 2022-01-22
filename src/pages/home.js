@@ -8,6 +8,7 @@ import Camera from '../components/camera'
 //Redux
 import {connect} from 'react-redux';
 
+
 let Home = (props) => {
 
     let {data: {homepage}} = props
