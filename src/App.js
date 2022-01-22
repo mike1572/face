@@ -29,6 +29,11 @@ let theme = createTheme({
       // red , text black
       main: '#f44336',
       contrastText: '#00000'
+    },
+    warning: {
+      // red , text black
+      main: '#00000',
+      contrastText: '#fff'
     }
   }
   

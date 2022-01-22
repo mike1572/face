@@ -5,7 +5,8 @@ import {
 } from './types';
 
 const initialState = {
-    homepage: true
+    homepage: true,
+    loadingMusic: false, 
 }
 
 export default function(state = initialState, action) {

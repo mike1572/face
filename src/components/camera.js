@@ -52,11 +52,12 @@ let Camera = (props) => {
             faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
             faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections)
             faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections)
-            //console.log(detections[0].expressions)
-            // console.log(detections)
+           
+ 
 
             if (detections.length !== 0 && detections[0].expressions !== undefined && detections[0].expressions.length !== 0){
                 setButtonDisabled(false)
+                console.log(detections[0].expressions)
             } else {
                 setButtonDisabled(true)
             }
