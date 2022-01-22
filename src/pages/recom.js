@@ -8,6 +8,7 @@ import Music from '../components/Music';
 //Redux
 import {connect} from 'react-redux';
 import { CircularProgress } from '@mui/material';
+import YoutubeMusicApi from 'youtube-music-api';
 
 
 
@@ -18,14 +19,12 @@ let Recom = (props) => {
     useEffect(()=> {
         //const YoutubeMusicApi = require('youtube-music-api')
 
-        // const api = new YoutubeMusicApi()
-        // api.initalize()
-        // .then(info => {
-        //     api.search("adele", "playlist")
-        //     .then(result => console.log(result))
-        // })
-
-
+        const api = new YoutubeMusicApi()
+        api.initalize()
+        .then(info => {
+            api.search("test", "playlists")
+            .then(result => console.log(result))
+        })
     }, [])
 
 
@@ -41,8 +40,6 @@ let Recom = (props) => {
             return (
                 <Fragment>
 
-                    <Music/>
-                    <Music/>
                     <Music/>
                     <br></br>
                     <br></br>
