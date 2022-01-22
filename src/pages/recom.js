@@ -30,7 +30,7 @@ let Recom = (props) => {
     }, [])
 
 
-    if (homepage){
+    if (!homepage){
 
         if (loadingMusic){
             return (

@@ -14,7 +14,7 @@ let Home = (props) => {
     let {data: {homepage}} = props
 
 
-    if (!homepage){
+    if (homepage){
         return (
             <Fragment>
                 <Camera/>

@@ -20,6 +20,9 @@ let Camera = (props) => {
 
     const [initializing, setInitializing] = useState(false)
     const [buttonDisabled, setButtonDisabled] = useState(true)
+    const [expressions, setExpressions] = useState({})
+
+    const [play, setPlay] = useState(false)
     const videoRef = useRef()
     const canvasRef= useRef()
 
@@ -31,9 +34,10 @@ let Camera = (props) => {
         )
     }
 
+    useEffect(()=> {
 
-    let handlePlayingVideo = () => {
-        setInterval(async () => {
+
+        let interval = setInterval(async () => {
             if (initializing){
                 setInitializing(false)
             }
@@ -52,17 +56,27 @@ let Camera = (props) => {
             faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
             faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections)
             faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections)
-           
- 
-
+            
+    
             if (detections.length !== 0 && detections[0].expressions !== undefined && detections[0].expressions.length !== 0){
                 setButtonDisabled(false)
-                console.log(detections[0].expressions)
+                setExpressions(detections[0].expressions)
+                console.log(typeof detections[0].expressions)
             } else {
                 setButtonDisabled(true)
             }
 
         }, 500)
+     
+
+        if (!play){
+            clearInterval(interval)
+        }
+                    
+    }, [play])
+
+    let handlePlayingVideo = () => {
+        setPlay(true)
     }
 
 
@@ -83,13 +97,17 @@ let Camera = (props) => {
 
             getModels()
   
+        } else {
+
         }
 
 
     }, [homepage])
 
     let handleClick = () => {
-        props.getRecomPage()
+        setPlay(false)
+        props.getRecomPage(expressions)
+        setExpressions({})
     }
 
 

@@ -1,3 +1,4 @@
 
-const SWITCH_PAGE = 'SWITCH_PAGE'
+
+export const SWITCH_PAGE = 'SWITCH_PAGE'
 
