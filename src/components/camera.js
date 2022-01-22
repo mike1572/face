@@ -21,8 +21,9 @@ let Camera = (props) => {
     const [initializing, setInitializing] = useState(false)
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [expressions, setExpressions] = useState({})
+    const [intervalId, setIntervalId] = useState(null)
+    const [localstream, setLocalStream] = useState(null)
 
-    const [play, setPlay] = useState(false)
     const videoRef = useRef()
     const canvasRef= useRef()
     const btnRef = useRef()
@@ -30,15 +31,20 @@ let Camera = (props) => {
     let beginVideo = () => {
         navigator.getUserMedia(
             { video: {}},
-            stream => videoRef.current.srcObject = stream, 
-            error => console.log(error)
+            function(stream) {
+                videoRef.current.srcObject = stream
+                setLocalStream(stream)
+            }, 
+            function(error){
+                console.log(error)
+            }
+         
         )
     }
 
-    useEffect(()=> {
 
-
-        let interval = setInterval(async () => {
+    let handlePlayingVideo = () => {
+        let inter = setInterval(async () => {
             if (initializing){
                 setInitializing(false)
             }
@@ -61,27 +67,16 @@ let Camera = (props) => {
     
             if (detections.length !== 0 && detections[0].expressions !== undefined && detections[0].expressions.length !== 0){
                 setButtonDisabled(false)
-                console.log(detections[0].expressions)
+                setExpressions(detections[0].expressions)
                 // show visibility of video
                 videoRef.current.style.visibility = 'visible'
                 btnRef.current.style.visibility = 'visible'
             } else {
-                videoRef.current.style.visibility = 'hidden'
-                btnRef.current.style.visibility = 'hidden'
                 setButtonDisabled(true)
             }
 
         }, 500)
-     
-
-        if (!play){
-            clearInterval(interval)
-        }
-                    
-    }, [play])
-
-    let handlePlayingVideo = () => {
-        setPlay(true)
+        setIntervalId(inter)
     }
 
 
@@ -110,7 +105,8 @@ let Camera = (props) => {
     }, [homepage])
 
     let handleClick = () => {
-        setPlay(false)
+        clearInterval(intervalId)
+        localstream.getTracks()[0].stop();
         props.getRecomPage(expressions)
         setExpressions({})
     }
@@ -138,7 +134,6 @@ let Camera = (props) => {
                     style={{margin: 'auto'}} 
                     color="primary" 
                     variant="contained"
-                    type="submit"
                     onClick={handleClick}
                     disabled={buttonDisabled}
                     ref={btnRef}
