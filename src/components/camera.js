@@ -22,6 +22,7 @@ let Camera = (props) => {
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const videoRef = useRef()
     const canvasRef= useRef()
+    const btnRef = useRef()
 
     let beginVideo = () => {
         navigator.getUserMedia(
@@ -58,7 +59,12 @@ let Camera = (props) => {
             if (detections.length !== 0 && detections[0].expressions !== undefined && detections[0].expressions.length !== 0){
                 setButtonDisabled(false)
                 console.log(detections[0].expressions)
+                // show visibility of video
+                videoRef.current.style.visibility = 'visible'
+                btnRef.current.style.visibility = 'visible'
             } else {
+                videoRef.current.style.visibility = 'hidden'
+                btnRef.current.style.visibility = 'hidden'
                 setButtonDisabled(true)
             }
 
@@ -118,6 +124,7 @@ let Camera = (props) => {
                     type="submit"
                     onClick={handleClick}
                     disabled={buttonDisabled}
+                    ref={btnRef}
 
                 >Get Music Recommendations</Button>
             </Box>
