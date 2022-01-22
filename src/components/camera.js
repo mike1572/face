@@ -10,7 +10,6 @@ import {getRecomPage} from '../redux/dataActions'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
-
 let Camera = (props) => {
 
     useEffect(()=> {
@@ -30,9 +29,9 @@ let Camera = (props) => {
 
     return (
         <Fragment>
-          
-            <video id="video" width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}}></video>
-       
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <video id="video" autoPlay muted style={{maxHeight: 450, marginTop: 15, border: 'solid 5px', borderRadius: '20%'}}></video>
+            </div>
             <Box textAlign='center' sx={{mt: 3, mb: 5}}>
                 <Button 
                     style={{margin: 'auto'}} 
