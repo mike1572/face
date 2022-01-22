@@ -1,33 +1,34 @@
 
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import * as faceapi from 'face-api.js'
+import {loadModels} from '../redux/dataActions'
+import {videoListener} from '../redux/dataActions'
+import * as faceapi from 'face-api.js';
+
 
 //Redux
 import {connect} from 'react-redux';
-import { TinyFaceDetectorOptions } from 'face-api.js'
+
+Promise.all([
+    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.faceExpressionNet.loadFromUri('/models')
+  ]).then(loadModels())
 
 let Camera = (props) => {
 
     useEffect(()=> {
         let video = document.getElementById('video')
+        videoListener()
+        //loadModels()
         navigator.getUserMedia(
             { video: {}},
             stream => video.srcObject = stream, 
             error => console.log(error)
         )
 
-        document.getElementById('video').addEventListener('play', () => {
-            let canvas = document.getElementById('canvas')
-            setInterval(async () => {
-                const detections = await faceapi.detectAllFaces(document.getElementById('video'), new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
-                console.log(detections)
-            }, 100)
-        })
     }, [])
-
-
-
     return (
         <video id="video" width="720" height="560" autoPlay muted></video>
     )
@@ -44,6 +45,5 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
 
 }
-
 
 export default connect(mapStateToProps, mapActionsToProps)(Camera);
