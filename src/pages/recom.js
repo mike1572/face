@@ -1,6 +1,6 @@
 
 
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import PropTypes from 'prop-types'
 
 //Redux
@@ -9,6 +9,14 @@ import {connect} from 'react-redux';
 let Recom = (props) => {
 
     let {data: {homepage}} = props
+
+    useEffect(()=> {
+
+
+
+
+    }, [])
+
 
     if (!homepage){
         return (

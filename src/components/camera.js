@@ -19,6 +19,8 @@ let Camera = (props) => {
             stream => video.srcObject = stream, 
             error => console.log(error)
         )
+
+        
     }, [])
 
     return (
