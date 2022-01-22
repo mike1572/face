@@ -1,5 +1,5 @@
 
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect, Fragment, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 
 //Redux
@@ -11,44 +11,72 @@ import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
 import * as faceapi from 'face-api.js'
+import { Typography } from '@mui/material';
 
 
 let Camera = (props) => {
 
     let {data: {homepage}} = props
 
+    const [initializing, setInitializing] = useState(false)
+    const [buttonDisabled, setButtonDisabled] = useState(true)
+    const videoRef = useRef()
+    const canvasRef= useRef()
+
+    let beginVideo = () => {
+        navigator.getUserMedia(
+            { video: {}},
+            stream => videoRef.current.srcObject = stream, 
+            error => console.log(error)
+        )
+    }
+
+
+    let handlePlayingVideo = () => {
+        setInterval(async () => {
+            if (initializing){
+                setInitializing(false)
+            }
+            canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current)
+            const displaySize = { width: videoRef.current.offsetWidth, height: videoRef.current.offsetHeight }
+            faceapi.matchDimensions(canvasRef.current, displaySize)
+            const detections = await faceapi.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
+            const resizedDetections = faceapi.resizeResults(detections, displaySize)
+            canvasRef.current.getContext('2d').clearRect(0, 0, videoRef.current.offsetWidth, videoRef.current.offsetHeight)
+            faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
+            faceapi.draw.drawFaceLandmarks(canvasRef.current, resizedDetections)
+            faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections)
+            //console.log(detections[0].expressions)
+            // console.log(detections)
+
+            if (detections.length !== 0 && detections[0].expressions !== undefined && detections[0].expressions.length !== 0){
+                setButtonDisabled(false)
+            } else {
+                setButtonDisabled(true)
+            }
+
+        }, 500)
+    }
+
+
     useEffect(()=> {
 
         if (homepage){
+   
 
-       
-            let video = document.getElementById('video')
-            navigator.getUserMedia(
-                { video: {}},
-                stream => video.srcObject = stream, 
-                error => console.log(error)
-            )
+            let getModels = async () => {
+                const URL = process.env.PUBLIC_URL + '/models'
+                setInitializing(true)
+                Promise.all([
+                    faceapi.nets.tinyFaceDetector.loadFromUri(URL),
+                    faceapi.nets.faceLandmark68Net.loadFromUri(URL),
+                    faceapi.nets.faceRecognitionNet.loadFromUri(URL),
+                    faceapi.nets.faceExpressionNet.loadFromUri(URL)
+                ]).then(beginVideo)
+            }
 
-            video.addEventListener('play', () => {
-           
-                const canvas = faceapi.createCanvasFromMedia(video)
-                document.body.append(canvas)
-                const displaySize = { width: video.width, height: video.height }
-                faceapi.matchDimensions(canvas, displaySize)
-                setInterval(async () => {
-                    const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
-                    console.log(detections)
-                    const resizedDetections = faceapi.resizeResults(detections, displaySize)
-                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-                    faceapi.draw.drawDetections(canvas, resizedDetections)
-                    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
-                    faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
-                }, 100)
-            })
-
-
-
-
+            getModels()
+  
         }
 
 
@@ -60,8 +88,18 @@ let Camera = (props) => {
 
     return (
         <Fragment>
-          
-            <video id="video" width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}}></video>
+            <Typography textAlign='center'
+                variant="h5"
+                color="secondary"
+                sx={{mt: 2}}
+            >
+                {initializing? 'Loading Model' : "Model Ready!"}
+            </Typography>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
+                <video ref={videoRef} width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}} onPlay={handlePlayingVideo}></video>
+                <canvas ref={canvasRef} style={{position: 'absolute'}}/>
+            </div>
+       
        
             <Box textAlign='center' sx={{mt: 3, mb: 5}}>
                 <Button 
@@ -70,6 +108,7 @@ let Camera = (props) => {
                     variant="contained"
                     type="submit"
                     onClick={handleClick}
+                    disabled={buttonDisabled}
 
                 >Get Music Recommendations</Button>
             </Box>
