@@ -1,3 +1,4 @@
+import YoutubeMusicApi from "youtube-music-api"
 var emotionToPlaylist = {
     //go to, for example, 
     //https://www.youtube.com/playlist?list=PLFR1-_AwxKcyDsrzTgxG5TB0Dz8lTLK6N

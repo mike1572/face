@@ -26,6 +26,7 @@ Deve Ne Kush (Mutsuz Parti Şekli)', author: 'Mustafa TAŞ',
 views: '993 views', duration: 12000, thumbnails: [Array], params: 'wAEB'
 src="https://www.youtube.com/embed/2SnbMTQwDKM?rel=0" 
 */
+const test = 'wLIMPrlP2mE'
 
 let Music = (props) => {
 
@@ -35,9 +36,9 @@ let Music = (props) => {
             <CardMedia
                 component={'iframe'}
                 height='100%'
-                src={`https://www.youtube.com/embed/wLIMPrlP2mE?rel=0`}
+                src={`https://www.youtube.com/embed/` + test + `?rel=0?fs=0`}
                 style={{position: 'relative', minHeight: 330 }}
-                alt="Youtube Music" 
+                alt="Youtube Music Player" 
             
             />
         </Card>
