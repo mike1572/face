@@ -63,7 +63,6 @@ let Camera = (props) => {
 
         if (homepage){
    
-
             let getModels = async () => {
                 const URL = process.env.PUBLIC_URL + '/models'
                 setInitializing(true)
@@ -86,8 +85,10 @@ let Camera = (props) => {
         props.getRecomPage()
     }
 
+
     return (
         <Fragment>
+
             <Typography textAlign='center'
                 variant="h5"
                 color="secondary"
@@ -95,13 +96,14 @@ let Camera = (props) => {
             >
                 {initializing? 'Loading Model' : "Model Ready!"}
             </Typography>
+
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <video ref={videoRef} width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}} onPlay={handlePlayingVideo}></video>
                 <canvas ref={canvasRef} style={{position: 'absolute'}}/>
             </div>
-       
-       
-            <Box textAlign='center' sx={{mt: 3, mb: 5}}>
+    
+            <Box textAlign='center' sx={{mt: 3, mb: 5, display: 'flex', flexDirection: 'column'}}>
+ 
                 <Button 
                     style={{margin: 'auto'}} 
                     color="primary" 
