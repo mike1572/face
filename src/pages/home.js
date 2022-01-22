@@ -1,13 +1,18 @@
 
 
-import React from 'react'
+import React, {Fragment} from 'react'
+
+import Camera from '../components/camera'
 
 let Home = () => {
 
     return (
-        <h1>gt</h1>
+        <Fragment>
+            <h1>test</h1>
+            <Camera/>
+        </Fragment>
+     
     )
-
 }
 
 export default Home;
