@@ -59,17 +59,17 @@ let Camera = (props) => {
     }
 
     let takePicture = () => {
-
+       
     }
 
     return (
         <Fragment>
-            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <video id="video" autoPlay muted style={{maxHeight: 450, marginTop: 15, border: 'solid 5px', borderRadius: '20%'}}></video>
+            <div id="videoContainer" style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <video id="video" autoPlay muted style={{maxHeight: 450, marginTop: 15, border: 'solid 5px #002984', borderRadius: '20%'}}></video>
             </div>
             <Box textAlign='center' sx={{mt: 3, mb: 5, display: 'flex', flexDirection: 'column'}}>
                 <Button
-                    style={{margin: 'auto'}} 
+                    style={{margin: 'auto auto 10px auto'}} 
                     color="primary" 
                     variant="outlined"
                     type="submit"
