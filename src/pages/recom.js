@@ -9,7 +9,8 @@ import Music from '../components/Music';
 import {connect} from 'react-redux';
 import { CircularProgress } from '@mui/material';
 
-
+// MUI
+import Grid from '@mui/material/Grid';
 
 let Recom = (props) => {
 
@@ -40,10 +41,18 @@ let Recom = (props) => {
         } else {
             return (
                 <Fragment>
-
-                    <Music/>
-                    <Music/>
-                    <Music/>
+                    <Grid container>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                        <Music id='wLIMPrlP2mE'/>
+                    </Grid>
+                
                     <br></br>
                     <br></br>
                 </Fragment>
