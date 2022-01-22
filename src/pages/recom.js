@@ -17,7 +17,7 @@ let Recom = (props) => {
 
     let {data: {homepage, loadingMusic}} = props
    
-    useEffect(()=> {
+    // useEffect(()=> {
         //const YoutubeMusicApi = require('youtube-music-api')
 
         // const api = new YoutubeMusicApi()
