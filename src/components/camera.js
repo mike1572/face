@@ -1,9 +1,14 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 //Redux
 import {connect} from 'react-redux';
+
+// MUI
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box'
+
 
 let Camera = (props) => {
 
@@ -17,8 +22,23 @@ let Camera = (props) => {
     }, [])
 
     return (
-        <video id="video" width="720" height="
-        560" autoPlay muted></video>
+        <Fragment>
+          
+            <video id="video" width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}}></video>
+       
+            <Box textAlign='center' sx={{mt: 3, mb: 5}}>
+                <Button 
+                    style={{margin: 'auto'}} 
+                    color="primary" 
+                    variant="contained"
+                    type="submit"
+
+                >Get Music Recommendations</Button>
+            </Box>
+
+        
+        </Fragment>
+
     )
 }
 

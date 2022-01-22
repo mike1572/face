@@ -13,7 +13,8 @@ let Header = () => {
             
                 <Toolbar disableGutters>
                     <Typography
-                        variant="h4"
+                        
+                        fontSize={28}
                         noWrap
                         component="div"
                     >

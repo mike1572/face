@@ -17,7 +17,6 @@ let Home = (props) => {
     if (homepage){
         return (
             <Fragment>
-                <h1>homepage</h1>
                 <Camera/>
             </Fragment>
             
