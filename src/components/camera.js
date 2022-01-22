@@ -10,19 +10,28 @@ import {getRecomPage} from '../redux/dataActions'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
+import {faceapi} from 'face-api.js'
+
 
 let Camera = (props) => {
 
+    let {data: {homepage}} = props
+
     useEffect(()=> {
-        let video = document.getElementById('video')
-        navigator.getUserMedia(
-            { video: {}},
-            stream => video.srcObject = stream, 
-            error => console.log(error)
-        )
+
+        if (homepage){
+
+       
+            let video = document.getElementById('video')
+            navigator.getUserMedia(
+                { video: {}},
+                stream => video.srcObject = stream, 
+                error => console.log(error)
+            )
+        }
 
 
-    }, [])
+    }, [homepage])
 
     let handleClick = () => {
         props.getRecomPage()
