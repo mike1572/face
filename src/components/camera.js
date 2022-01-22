@@ -38,7 +38,13 @@ let Camera = (props) => {
                 setInitializing(false)
             }
             canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current)
+
+
             const displaySize = { width: videoRef.current.offsetWidth, height: videoRef.current.offsetHeight }
+            if (displaySize.width > 645){
+                displaySize.width = 645
+            }
+    
             faceapi.matchDimensions(canvasRef.current, displaySize)
             const detections = await faceapi.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
@@ -99,7 +105,7 @@ let Camera = (props) => {
 
             <div style={{display: 'flex', justifyContent: 'center'}}>
                 <video ref={videoRef} width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}} onPlay={handlePlayingVideo}></video>
-                <canvas ref={canvasRef} style={{position: 'absolute'}}/>
+                <canvas ref={canvasRef} style={{position: 'absolute', maxHeight: 450}}/>
             </div>
     
             <Box textAlign='center' sx={{mt: 3, mb: 5, display: 'flex', flexDirection: 'column'}}>
