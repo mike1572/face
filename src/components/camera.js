@@ -10,7 +10,7 @@ import {getRecomPage} from '../redux/dataActions'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
 
-import {faceapi} from 'face-api.js'
+import faceapi from 'face-api.js'
 
 
 let Camera = (props) => {
@@ -28,6 +28,14 @@ let Camera = (props) => {
                 stream => video.srcObject = stream, 
                 error => console.log(error)
             )
+
+            document.getElementById('video').addEventListener('play', () => {
+                let canvas = document.getElementById('canvas')
+                setInterval(async () => {
+                    const detections = await faceapi.detectAllFaces(document.getElementById('video'), new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
+                    console.log(detections)
+                }, 100)
+            })
         }
 
 
