@@ -1,10 +1,11 @@
 
 
+import React from 'react'
 
 let Home = () => {
 
     return (
-        <h1></h1>
+        <h1>te</h1>
     )
 
 }
