@@ -1,18 +1,48 @@
 
 
-import React, {Fragment} from 'react'
+import React, {Fragment} from 'react';
+import PropTypes from 'prop-types'
 
 import Camera from '../components/camera'
 
-let Home = () => {
+//Redux
+import {connect} from 'react-redux';
 
-    return (
-        <Fragment>
-            <h1>test</h1>
-            <Camera/>
-        </Fragment>
-     
-    )
+let Home = (props) => {
+
+    let {data: {homepage}} = props
+
+
+    if (homepage){
+        return (
+            <Fragment>
+                <h1>homepage</h1>
+                <Camera/>
+            </Fragment>
+            
+        )
+    } else {
+        return (
+            <Fragment></Fragment>
+        )
+    }
+            
 }
 
-export default Home;
+
+Home.propTypes = {
+    data: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    data: state.data 
+})
+
+const mapActionsToProps = {
+
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(Home);
+
+
