@@ -13,9 +13,30 @@ import Header from './components/header'
 import {Provider} from 'react-redux';
 import store from './redux/store';
 
+// MUI
+import ThemeProvider from '@mui/material/styles/ThemeProvider';
+import createTheme from '@mui/material/styles/createTheme';
+
+let theme = createTheme({
+  
+  palette: {
+    primary: {
+      // blue, text white
+      main: '#002984',
+      contrastText: '#fff'
+    },
+    secondary: {
+      // red , text black
+      main: '#f44336',
+      contrastText: '#00000'
+    }
+  }
+  
+})
 
 function App() {
   return (
+    <ThemeProvider theme={theme}>
     <Provider store={store}>
       <Fragment>
         <Header/>
@@ -23,6 +44,7 @@ function App() {
         <Recom/>
       </Fragment>
     </Provider>
+    </ThemeProvider>
   
   );
 }

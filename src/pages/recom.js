@@ -1,6 +1,7 @@
 
 
 import React, {Fragment} from 'react'
+import PropTypes from 'prop-types'
 
 //Redux
 import {connect} from 'react-redux';
@@ -13,7 +14,7 @@ let Recom = (props) => {
         return (
             <Fragment>
                 <h1>Recommendations Page</h1>
-                <Camera/>
+              
             </Fragment>
          
         )
