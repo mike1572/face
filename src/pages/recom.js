@@ -8,6 +8,7 @@ import Music from '../components/Music';
 //Redux
 import {connect} from 'react-redux';
 import { CircularProgress } from '@mui/material';
+// import YoutubeMusicApi from 'youtube-music-api';
 
 // MUI
 import Grid from '@mui/material/Grid';
@@ -22,11 +23,9 @@ let Recom = (props) => {
         // const api = new YoutubeMusicApi()
         // api.initalize()
         // .then(info => {
-        //     api.search("adele", "playlist")
+        //     api.search("test", "playlists")
         //     .then(result => console.log(result))
         // })
-
-
     }, [])
 
 
@@ -41,18 +40,8 @@ let Recom = (props) => {
         } else {
             return (
                 <Fragment>
-                    <Grid container>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                        <Music id='wLIMPrlP2mE'/>
-                    </Grid>
-                
+
+                    <Music id ="wLIMPrlP2mE"/>
                     <br></br>
                     <br></br>
                 </Fragment>
