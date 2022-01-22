@@ -16,19 +16,20 @@ let Camera = (props) => {
             stream => video.srcObject = stream, 
             error => console.log(error)
         )
+
+        document.getElementById('video').addEventListener('play', () => {
+            let canvas = document.getElementById('canvas')
+            setInterval(async () => {
+                const detections = await faceapi.detectAllFaces(document.getElementById('video'), new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
+                console.log(detections)
+            }, 100)
+        })
     }, [])
 
-    document.getElementById('video').addEventListener('play', () => {
-        let canvas = document.getElementById('canvas')
-        setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(document.getElementById('video'), new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptors()
-            console.log(detections)
-        }, 100)
-    })
+
 
     return (
-        <video id="video" width="720" height="
-        560" autoPlay muted></video>
+        <video id="video" width="720" height="560" autoPlay muted></video>
     )
 }
 
