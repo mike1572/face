@@ -10,26 +10,16 @@ import {connect} from 'react-redux';
 import { CircularProgress } from '@mui/material';
 
 
+// MUI
+import Grid from '@mui/material/Grid';
+
 
 let Recom = (props) => {
 
-    let {data: {homepage, loadingMusic}} = props
+    let {data: {homepage, loadingMusic, musics, about}} = props
    
-    useEffect(()=> {
-        //const YoutubeMusicApi = require('youtube-music-api')
 
-        // const api = new YoutubeMusicApi()
-        // api.initalize()
-        // .then(info => {
-        //     api.search("adele", "playlist")
-        //     .then(result => console.log(result))
-        // })
-
-
-    }, [])
-
-
-    if (homepage){
+    if (!homepage && !about){
 
         if (loadingMusic){
             return (
@@ -40,10 +30,13 @@ let Recom = (props) => {
         } else {
             return (
                 <Fragment>
-
-                    <Music/>
-                    <Music/>
-                    <Music/>
+                    <Grid container>
+                        {musics.map( (music, i) => {
+                            return (
+                                <Music id ={music.id.videoId}/>
+                            )
+                        })} 
+                    </Grid>     
                     <br></br>
                     <br></br>
                 </Fragment>
@@ -52,7 +45,7 @@ let Recom = (props) => {
         }
         
  
-    } else{
+    } else {
         return (
             <Fragment></Fragment>
         )

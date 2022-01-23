@@ -11,21 +11,12 @@ import {connect} from 'react-redux';
 
 let Home = (props) => {
 
-    let {data: {homepage}} = props
+    let {data: {homepage, about}} = props
 
+    return (
+        <Camera/>
+    )
 
-    if (!homepage){
-        return (
-            <Fragment>
-                <Camera/>
-            </Fragment>
-            
-        )
-    } else {
-        return (
-            <Fragment></Fragment>
-        )
-    }
             
 }
 
