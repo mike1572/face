@@ -49,20 +49,27 @@ export const getRecomPage = (expressions) => (dispatch) => {
 
 
 
-
-
-
-    let SEARCH_QUERY = "happy"
-    let AMOUNT_OF_RESULTS = "4"
+    let SEARCH_QUERY = "best of heavy metal"
+    let AMOUNT_OF_RESULTS = "50"
 
     fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${SEARCH_QUERY}&maxResults=${AMOUNT_OF_RESULTS}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`)
     .then((response) => response.json())
     .then((data) => { 
-        console.log(data.items)
+
+        let array = []
+
+        while (array.length < 4){
+            let rand = Math.floor(Math.random() * 50) 
+            let item = data.items[rand]
+            if (item.id.videoId !== undefined){
+                array.push(item)
+            }
+            
+        }
 
         dispatch({
             type: SET_MUSICS,
-            payload: data.items
+            payload: array
         })
 
         dispatch({
