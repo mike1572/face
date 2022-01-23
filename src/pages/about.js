@@ -35,10 +35,10 @@ let About = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                <GitHubIcon color='inherit' sx={{mr: 1}}/>
+                <GitHubIcon color='inherit' sx={{mr: -0.5, ml: 1}}  />
                     <ListItem >
                         <Typography fontSize='1rem' fontWeight={600} >
-                            <a href="https://github.com/mike1572/solarSystem/" rel="noreferrer" target="_blank" style={{color: 'black'}}>Code</a>
+                            <a href="https://github.com/mike1572/face" rel="noreferrer" target="_blank" style={{color: 'black'}}>Code</a>
                         </Typography>
                     </ListItem>
                 </CardActions>
