@@ -6,7 +6,7 @@ import {
     SET_ABOUT
 } from './types'
 
-// const YOUTUBE_VIDEOS_API = 'https://www.googleapis.com/youtube/v3/videos'
+import {YOUTUBE_API_KEY} from '../apikey'
 
 export const updateAbout = (number, homepage) => (dispatch) => {
 
@@ -65,7 +65,8 @@ export const getRecomPage = (expressions) => (dispatch) => {
             second.value = value
         }
     }
-  
+
+    let apikey = YOUTUBE_API_KEY
     let apiURL;
     let numResults = "25"
 
@@ -74,35 +75,35 @@ export const getRecomPage = (expressions) => (dispatch) => {
     if (first.value > 0.55){
         if (first.name === 'angry'){
             
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of death metal/heavy metal"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of death metal/heavy metal"}&maxResults=${numResults}&key=${apikey}`
             
         } else if (first.name === 'disgusted'){
           
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"songs to boost mood"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"songs to boost mood"}&maxResults=${numResults}&key=${apikey}`
             
         } else if (first.name === 'fearful'){
            
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"relaxing music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"relaxing music"}&maxResults=${numResults}&key=${apikey}`
             
         } else if (first.name === 'happy'){
           
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of groovy music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of groovy music"}&maxResults=${numResults}&key=${apikey}`
             
         } else if (first.name === 'neutral'){
         
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"chillstep mix"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"chillstep mix"}&maxResults=${numResults}&key=${apikey}`
             
         } else if (first.name === 'sad'){
             
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"EDM"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"EDM"}&maxResults=${numResults}&key=${apikey}`
             
         } else {
       
-            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"pop"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"pop"}&maxResults=${numResults}&key=${apikey}`
             
         }
     } else {
-        apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"top hits music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+        apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"top hits music"}&maxResults=${numResults}&key=${apikey}`
             
     }
 

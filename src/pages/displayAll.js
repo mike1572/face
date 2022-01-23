@@ -13,7 +13,6 @@ let DisplayAll = (props) => {
 
     let {data: {about}} = props
     
-
     return (
 
         <Fragment>
