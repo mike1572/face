@@ -1,12 +1,14 @@
 
 import {
     SWITCH_PAGE,
-    LOADING_MUSIC
+    LOADING_MUSIC,
+    SET_MUSICS
 } from './types';
 
 const initialState = {
     homepage: true,
-    loadingMusic: false, 
+    loadingMusic: false,
+    musics: [] 
 }
 
 export default function(state = initialState, action) {
@@ -21,6 +23,12 @@ export default function(state = initialState, action) {
             return {
                 ...state, 
                 loadingMusic: action.payload
+            }
+        }
+        case SET_MUSICS: {
+            return {
+                ...state,
+                musics: action.payload
             }
         }
         default: 

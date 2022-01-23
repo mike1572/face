@@ -15,19 +15,8 @@ import Grid from '@mui/material/Grid';
 
 let Recom = (props) => {
 
-    let {data: {homepage, loadingMusic}} = props
+    let {data: {homepage, loadingMusic, musics}} = props
    
-    // useEffect(()=> {
-        //const YoutubeMusicApi = require('youtube-music-api')
-
-        // const api = new YoutubeMusicApi()
-        // api.initalize()
-        // .then(info => {
-        //     api.search("test", "playlists")
-        //     .then(result => console.log(result))
-        // })
-    // }, [])
-
 
     if (!homepage){
 
@@ -40,8 +29,13 @@ let Recom = (props) => {
         } else {
             return (
                 <Fragment>
-
-                    <Music id ="wLIMPrlP2mE"/>
+                    <Grid container>
+                        {musics.map( (music, i) => {
+                            return (
+                                <Music id ={music.id.videoId}/>
+                            )
+                        })} 
+                    </Grid>     
                     <br></br>
                     <br></br>
                 </Fragment>
