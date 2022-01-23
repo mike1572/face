@@ -9,6 +9,7 @@ import {
 
 export const getRecomPage = (expressions) => (dispatch) => {
 
+    console.log(expressions.angry)
     dispatch({
         type: SWITCH_PAGE,
         payload: false
@@ -19,6 +20,38 @@ export const getRecomPage = (expressions) => (dispatch) => {
         payload: true
     })  
 
+
+    let first = {name: '', value: 0}
+    let second =  {name: '', value: 0}
+
+    for (const [key, value] of Object.entries(expressions)) {
+        if (value > first.value){
+            first.name = key
+            first.value = value
+        }
+        if (value < first.value && value > second.value ){
+            second.name = key
+            second.value = value
+        }
+    }
+
+    console.log(first, second)
+    // angry: 0.029884401708841324
+    // disgusted: 0.9335694909095764
+    // fearful: 0.00033626012736931443
+    // happy: 0.006967954337596893
+    // neutral: 0.017639966681599617
+    // sad: 0.01113971509039402
+    // surprised: 0.0004622840497177094
+
+
+
+
+
+
+
+
+
     let SEARCH_QUERY = "happy"
     let AMOUNT_OF_RESULTS = "4"
 
@@ -27,7 +60,6 @@ export const getRecomPage = (expressions) => (dispatch) => {
     .then((data) => { 
         console.log(data.items)
 
-        
         dispatch({
             type: SET_MUSICS,
             payload: data.items
