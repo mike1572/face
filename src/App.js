@@ -83,7 +83,7 @@ function App() {
             {icon}
           </IconButton>
         </Header>
-        <DisplayAll/>
+        <DisplayAll />
       </Fragment>
     </Provider>
     </ThemeProvider>
