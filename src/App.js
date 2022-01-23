@@ -1,12 +1,9 @@
-
+// React
 import React, {Fragment, useState} from 'react'
-import './App.css';
-
 
 // Pages
-import Home from './pages/home'
-import Recom from './pages/recom'
 import DisplayAll from './pages/displayAll';
+
 //Components
 import Header from './components/header'
 
@@ -15,20 +12,27 @@ import {Provider} from 'react-redux';
 import store from './redux/store';
 
 // MUI
+import CssBaseline from "@mui/material/CssBaseline";
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import createTheme from '@mui/material/styles/createTheme';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { IconButton } from '@mui/material';
+
 export const light = {
   palette: {
     type: 'light',
     primary: {
-      main: '#3E065F',
+      main: '#544A7D', // Button, purple
       contrastText: '#fff',
+      toggleButton: '#000',
+    },
+    secondary: {
+      main: '#544A7D', // Model ready text
+      contrastText: '#000',
     },
     background: {
-      default: '#121212',
+      default: '#E1EEC3',
     },
   },
 }
@@ -38,35 +42,18 @@ export const dark = {
     type: 'dark',
     primary: {
       main: '#93FFD8',
-      contrastText: '#fff',
+      contrastText: '#000',
+      toggleButton: '#fff',
+    },
+    secondary: {
+      main: '#E1EEC3',
+      contrastText: '#000',
+    },
+    background: {
+      default: "#544A7D", 
     },
   },
 }
-
-
-
-
-// let theme = createTheme({
-  
-//   palette: {
-//     primary: {
-//       // blue, text white
-//       main: '#002984',
-//       contrastText: '#fff'
-//     },
-//     secondary: {
-//       // red , text black
-//       main: '#f44336',
-//       contrastText: '#00000'
-//     },
-//     warning: {
-//       // red , text black
-//       main: '#00000',
-//       contrastText: '#fff'
-//     }
-//   }
-  
-// })
 
 function App() {
   const [theme, setTheme] = useState(true);
@@ -74,25 +61,25 @@ function App() {
   const appliedTheme = createTheme(theme ? light : dark);
   return (
     <ThemeProvider theme={appliedTheme}>
+    <CssBaseline />
     <Provider store={store}>
       <Fragment>
         <Header>
+        </Header>
         <IconButton
-            edge="end"
-            color="inherit"
+            edge="false"
+            color="secondary"
             aria-label="mode"
+            style={{position: 'absolute', right: '0', top: '0', width: '50px', height: '50px'}}
             onClick={() => setTheme(!theme)}
           >
             {icon}
           </IconButton>
-        </Header>
         <DisplayAll />
       </Fragment>
     </Provider>
     </ThemeProvider>
   );
 }
-
-
 
 export default App;
