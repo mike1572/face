@@ -2,6 +2,9 @@
 
 Webapp recommending you Youtube Videos based on your facial expression. Built in the scope of McGill's McHacks Hackathon - 9th Edition.
 
+## Demo
+There is a demo website that is accessible [here](https://face-a713b.web.app/). It contains the entire project.
+
 ## Table of Contents
 This serves as a general guide for navigating the repository! Feel free to PR if you see something missing.
 
