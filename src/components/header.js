@@ -45,11 +45,12 @@ function a11yProps(index) {
 }
 
 let Header = (props) => {
-  const [value, setValue] =useState(0);
+  const [value, setValue] = useState(0);
 
+  const {data: {about, homepage}} = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    props.updateAbout(newValue)
+    props.updateAbout(newValue, homepage)
   };
 
   return (

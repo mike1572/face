@@ -109,13 +109,13 @@ let Camera = (props) => {
         
         if (about){
             console.log("fffffff")
+        
+            if (localstream !== null){
+                console.log("cleared")
+                clearInterval(intervalId)
+                localstream.getTracks()[0].stop();
+            }
         }
-
-        // if (localstream !== null){
-        //     console.log("cleared")
-        //     clearInterval(intervalId)
-        //     localstream.getTracks()[0].stop();
-        // }
       
     }, [about])
 
@@ -126,39 +126,45 @@ let Camera = (props) => {
         setExpressions({})
     }
 
-    return (
-        <Fragment>
-
-            <Typography textAlign='center'
-                variant="h5"
-                color="secondary"
-                sx={{mt: 2}}
-            >
-                {initializing? 'Loading Model' : "Model Ready!"}
-            </Typography>
-
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-                <video ref={videoRef} width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}} onPlay={handlePlayingVideo}></video>
-                <canvas ref={canvasRef} style={{position: 'absolute', maxHeight: 450}}/>
-            </div>
+    if (homepage && !about){
+        return (
+            <Fragment>
     
-            <Box textAlign='center' sx={{mt: 3, mb: 5, display: 'flex', flexDirection: 'column'}}>
- 
-                <Button 
-                    style={{margin: 'auto'}} 
-                    color="primary" 
-                    variant="contained"
-                    onClick={handleClick}
-                    disabled={buttonDisabled}
-                    ref={btnRef}
-
-                >Get Music Recommendations</Button>
-            </Box>
-
+                <Typography textAlign='center'
+                    variant="h5"
+                    color="secondary"
+                    sx={{mt: 2}}
+                >
+                    {initializing? 'Loading Model' : "Model Ready!"}
+                </Typography>
+    
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <video ref={videoRef} width="100%" height="100%" autoPlay muted style={{maxHeight: 450, marginTop: 15}} onPlay={handlePlayingVideo}></video>
+                    <canvas ref={canvasRef} style={{position: 'absolute', maxHeight: 450}}/>
+                </div>
         
-        </Fragment>
+                <Box textAlign='center' sx={{mt: 3, mb: 5, display: 'flex', flexDirection: 'column'}}>
+     
+                    <Button 
+                        style={{margin: 'auto'}} 
+                        color="primary" 
+                        variant="contained"
+                        onClick={handleClick}
+                        disabled={buttonDisabled}
+                        ref={btnRef}
+    
+                    >Get Music Recommendations</Button>
+                </Box>
+    
+            
+            </Fragment>
+    
+        )
+    } else {
+        return (<Fragment></Fragment>)
+    }
 
-    )
+    
 }
 
 Camera.propTypes = {

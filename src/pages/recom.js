@@ -16,10 +16,10 @@ import Grid from '@mui/material/Grid';
 
 let Recom = (props) => {
 
-    let {data: {homepage, loadingMusic, musics}} = props
+    let {data: {homepage, loadingMusic, musics, about}} = props
    
 
-    if (!homepage){
+    if (!homepage && !about){
 
         if (loadingMusic){
             return (
@@ -45,7 +45,7 @@ let Recom = (props) => {
         }
         
  
-    } else{
+    } else {
         return (
             <Fragment></Fragment>
         )

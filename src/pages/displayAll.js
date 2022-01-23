@@ -13,19 +13,16 @@ let DisplayAll = (props) => {
 
     let {data: {about}} = props
     
-  
-    if (about){
-        return (
+
+    return (
+
+        <Fragment>
             <About/>
-        )
-    } else {
-        return (
-            <Fragment>
-                <Home/>
-                <Recom/>
-            </Fragment>
-        )
-    }
+            <Home/>
+            <Recom/>
+        </Fragment>
+    )
+
 }
 
 

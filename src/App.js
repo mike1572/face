@@ -83,8 +83,7 @@ function App() {
             {icon}
           </IconButton>
         </Header>
-        <Home/>
-        <Recom/>
+        <DisplayAll/>
       </Fragment>
     </Provider>
     </ThemeProvider>

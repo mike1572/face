@@ -8,18 +8,33 @@ import {
 
 // const YOUTUBE_VIDEOS_API = 'https://www.googleapis.com/youtube/v3/videos'
 
-export const updateAbout = (number) => (dispatch) => {
+export const updateAbout = (number, homepage) => (dispatch) => {
 
     if (number === 1){
         dispatch({
             type: SET_ABOUT,
             payload: true
         })
+
+        dispatch({
+            type: SWITCH_PAGE,
+            payload: false
+        })
+        
     } else {
+
+        
         dispatch({
             type: SET_ABOUT,
             payload: false
         })
+
+        if (!homepage){
+            dispatch({
+                type: SWITCH_PAGE,
+                payload: true
+            })
+        }
     }
 
 }
