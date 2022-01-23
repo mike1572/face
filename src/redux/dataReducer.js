@@ -2,17 +2,25 @@
 import {
     SWITCH_PAGE,
     LOADING_MUSIC,
-    SET_MUSICS
+    SET_MUSICS, 
+    SET_ABOUT
 } from './types';
 
 const initialState = {
     homepage: true,
     loadingMusic: false,
-    musics: [] 
+    musics: [], 
+    about: false
 }
 
 export default function(state = initialState, action) {
     switch(action.type){
+        case SET_ABOUT: {
+            return {
+                ...state, 
+                about: action.payload
+            }
+        }
         case SWITCH_PAGE: {
             return {
                 ...state, 

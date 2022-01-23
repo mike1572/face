@@ -17,7 +17,7 @@ import { Typography } from '@mui/material';
 
 let Camera = (props) => {
 
-    let {data: {homepage}} = props
+    let {data: {homepage, about}} = props
 
     const [initializing, setInitializing] = useState(false)
     const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -105,13 +105,26 @@ let Camera = (props) => {
 
     }, [homepage])
 
+    useEffect(()=> {
+        
+        if (about){
+            console.log("fffffff")
+        }
+
+        // if (localstream !== null){
+        //     console.log("cleared")
+        //     clearInterval(intervalId)
+        //     localstream.getTracks()[0].stop();
+        // }
+      
+    }, [about])
+
     let handleClick = () => {
         clearInterval(intervalId)
         localstream.getTracks()[0].stop();
         props.getRecomPage(expressions)
         setExpressions({})
     }
-
 
     return (
         <Fragment>

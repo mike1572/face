@@ -2,10 +2,27 @@
 import {
     SWITCH_PAGE,
     LOADING_MUSIC,
-    SET_MUSICS
+    SET_MUSICS,
+    SET_ABOUT
 } from './types'
 
 // const YOUTUBE_VIDEOS_API = 'https://www.googleapis.com/youtube/v3/videos'
+
+export const updateAbout = (number) => (dispatch) => {
+
+    if (number === 1){
+        dispatch({
+            type: SET_ABOUT,
+            payload: true
+        })
+    } else {
+        dispatch({
+            type: SET_ABOUT,
+            payload: false
+        })
+    }
+
+}
 
 export const getRecomPage = (expressions) => (dispatch) => {
 
@@ -46,17 +63,17 @@ export const getRecomPage = (expressions) => (dispatch) => {
         } else if (first.key === 'happy'){
             SEARCH_QUERY = "best of groovy music"
         } else if (first.key === 'neutral'){
-            SEARCH_QUERY = "chillstep"
+            SEARCH_QUERY = "chillstep mix"
         } else if (first.key === 'sad'){
             SEARCH_QUERY = "EDM"
         } else if (first.key === 'surprised'){
             SEARCH_QUERY = "pop"
         }
     } else {
-        SEARCH_QUERY = "top hits"
+        SEARCH_QUERY = "top hits music"
     }
 
-    let AMOUNT_OF_RESULTS = "30"
+    let AMOUNT_OF_RESULTS = "25"
 
     fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${SEARCH_QUERY}&maxResults=${AMOUNT_OF_RESULTS}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`)
     .then((response) => response.json())
@@ -64,7 +81,9 @@ export const getRecomPage = (expressions) => (dispatch) => {
 
         let array = []
 
-        while (array.length < 4){
+        let i = 0;
+        while (array.length < 4 && i < AMOUNT_OF_RESULTS){
+            i++
             let rand = Math.floor(Math.random() * AMOUNT_OF_RESULTS) 
             let item = data.items[rand]
             if (item.id.videoId !== undefined && !array.includes(item)){

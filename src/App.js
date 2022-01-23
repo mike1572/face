@@ -6,6 +6,7 @@ import './App.css';
 // Pages
 import Home from './pages/home'
 import Recom from './pages/recom'
+import DisplayAll from './pages/displayAll';
 //Components
 import Header from './components/header'
 
