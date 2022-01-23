@@ -39,7 +39,7 @@ There are many more commands, which you can familiarise yourself with on the [Cr
 
 
 ## Disclaimers
-This project is rate-limited by 100 API queries/day. You are also required to provide your own API key, as the file will not be provided. This is for privacy & security reasons.
+This project is rate-limited by 100 API queries/day. You are also required to provide your own API key, as the file will not be provided. This is for privacy & security reasons. Furthermore, this project may not work correctly with non-Chromium browsers as we use some Chromium-specific calls for our camera. This may or may not be updated further down the road if there is interest.
 
 ## Credits
 Many thanks to [Mike Dimitrov](https://github.com/mike1572), [Claude-Micael Guinan](https://github.com/lasource18), [Berke Altiparmak](https://github.com/BerkeAltiparmak) & [Ron Friedman](https://github.com/CryoTechnic) for their numerous contributions to the project, without whom, this would never have been completed. Finally, thank you to McGill and MLH for organizing the events. Thank You!
