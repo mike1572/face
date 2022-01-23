@@ -14,6 +14,7 @@ import * as faceapi from 'face-api.js'
 import { Typography } from '@mui/material';
 
 
+
 let Camera = (props) => {
 
     let {data: {homepage}} = props
