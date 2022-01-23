@@ -1,10 +1,14 @@
 
-import React from 'react'
+import React, {useState} from 'react'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+
+// Redux
+import {connect} from 'react-redux';
+import {updateAbout} from '../redux/dataActions'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -40,23 +44,43 @@ function a11yProps(index) {
   };
 }
 
-let Header = () => {
-  const [value, setValue] = React.useState(0);
+let Header = (props) => {
+  const [value, setValue] =useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    props.updateAbout(newValue)
   };
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} /> 
+          <Tab label="Home" {...a11yProps(0)} />
+          <Tab label="About" {...a11yProps(1)} /> 
         </Tabs>
       </Box>
     </Box>
   );
 }
 
-export default Header;
+
+Header.propTypes = {
+    data: PropTypes.object.isRequired,
+    updateAbout: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+    data: state.data 
+})
+
+const mapActionsToProps = {
+    updateAbout
+}
+
+
+export default connect(mapStateToProps, mapActionsToProps)(Header);
+
+
+
+

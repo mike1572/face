@@ -1,11 +1,13 @@
 
 import React, {Fragment} from 'react'
+import PropTypes from 'prop-types'
 import './App.css';
 
 
 // Pages
 import Home from './pages/home'
 import Recom from './pages/recom'
+import DisplayAll from './pages/displayAll';
 //Components
 import Header from './components/header'
 
@@ -44,9 +46,8 @@ function App() {
     <ThemeProvider theme={theme}>
     <Provider store={store}>
       <Fragment>
-        <Header/>
-        <Home/>
-        <Recom/>
+        <Header/>        
+        <DisplayAll/>
       </Fragment>
     </Provider>
     </ThemeProvider>
