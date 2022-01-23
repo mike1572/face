@@ -1,4 +1,3 @@
-
 import {
     SWITCH_PAGE,
     LOADING_MUSIC,
@@ -69,8 +68,6 @@ export const getRecomPage = (expressions) => (dispatch) => {
     let apikey = YOUTUBE_API_KEY
     let apiURL;
     let numResults = "25"
-
-    console.log(first.name)
 
     if (first.value > 0.55){
         if (first.name === 'angry'){

@@ -1,6 +1,7 @@
-
+// React
 import React, { useEffect, Fragment, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
+import * as faceapi from 'face-api.js'
 
 //Redux
 import {connect} from 'react-redux';
@@ -9,11 +10,7 @@ import {getRecomPage} from '../redux/dataActions'
 // MUI
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
-
-import * as faceapi from 'face-api.js'
 import { Typography } from '@mui/material';
-
-
 
 let Camera = (props) => {
 
@@ -43,14 +40,12 @@ let Camera = (props) => {
         )
     }
 
-
     let handlePlayingVideo = () => {
         let inter = setInterval(async () => {
             if (initializing){
                 setInitializing(false)
             }
             canvasRef.current.innerHTML = faceapi.createCanvasFromMedia(videoRef.current)
-
 
             const displaySize = { width: videoRef.current.offsetWidth, height: videoRef.current.offsetHeight }
             if (displaySize.width > 645){
@@ -80,7 +75,6 @@ let Camera = (props) => {
         setIntervalId(inter)
     }
 
-
     useEffect(()=> {
 
         if (homepage){
@@ -101,7 +95,6 @@ let Camera = (props) => {
         } else {
 
         }
-
 
     }, [homepage])
 
@@ -164,7 +157,6 @@ let Camera = (props) => {
         return (<Fragment></Fragment>)
     }
 
-    
 }
 
 Camera.propTypes = {
@@ -179,6 +171,5 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
     getRecomPage
 }
-
 
 export default connect(mapStateToProps, mapActionsToProps)(Camera);

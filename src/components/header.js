@@ -1,7 +1,9 @@
-
+// React
 import React, {useState} from 'react'
-import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types';
+
+// MUI
+import Typography from '@mui/material/Typography'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -56,8 +58,8 @@ let Header = (props) => {
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example">
-          <Tab label="Home" {...a11yProps(0)} />
+        <Tabs value={value} onChange={handleChange} centered aria-label="nav menu tabs" style={{color: 'contrastText'}}>
+          <Tab style={{color: 'contrastText'}} label="Home" {...a11yProps(0)} />
           <Tab label="About" {...a11yProps(1)} /> 
         </Tabs>
       </Box>
@@ -79,9 +81,4 @@ const mapActionsToProps = {
     updateAbout
 }
 
-
 export default connect(mapStateToProps, mapActionsToProps)(Header);
-
-
-
-

@@ -1,7 +1,8 @@
-
+// React
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 
+// Pages
 import Home from './home'
 import Recom from './recom'
 import About from './about'
@@ -37,6 +38,4 @@ const mapActionsToProps = {
 
 }
 
-
 export default connect(mapStateToProps, mapActionsToProps)(DisplayAll);
-

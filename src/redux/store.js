@@ -1,4 +1,4 @@
-
+// Redux
 import { createStore, combineReducers, applyMiddleware, compose} from 'redux';
 import thunk from 'redux-thunk';
 import dataReducer from './dataReducer';

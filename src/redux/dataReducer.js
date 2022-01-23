@@ -1,4 +1,4 @@
-
+// Stuff that needs to be here to make it work
 import {
     SWITCH_PAGE,
     LOADING_MUSIC,

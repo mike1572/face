@@ -1,13 +1,12 @@
-
-
+// React
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types'
 
+// Components
 import Camera from '../components/camera'
 
 //Redux
 import {connect} from 'react-redux';
-
 
 let Home = (props) => {
 
@@ -15,11 +14,8 @@ let Home = (props) => {
 
     return (
         <Camera/>
-    )
-
-            
+    )        
 }
-
 
 Home.propTypes = {
     data: PropTypes.object.isRequired
@@ -32,7 +28,6 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
 
 }
-
 
 export default connect(mapStateToProps, mapActionsToProps)(Home);
 
