@@ -133,7 +133,6 @@ export const getRecomPage = (expressions) => (dispatch) => {
         })
     })
  
-    console.log("Expressions", expressions)
 
 }
 

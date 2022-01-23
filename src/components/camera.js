@@ -101,10 +101,10 @@ let Camera = (props) => {
     useEffect(()=> {
         
         if (about){
-            console.log("fffffff")
+          
         
             if (localstream !== null){
-                console.log("cleared")
+                
                 clearInterval(intervalId)
                 localstream.getTracks()[0].stop();
             }
