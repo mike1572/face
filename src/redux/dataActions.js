@@ -66,40 +66,57 @@ export const getRecomPage = (expressions) => (dispatch) => {
         }
     }
   
-    let SEARCH_QUERY = ""
+    let apiURL;
+    let numResults = "25"
+
+    console.log(first.name)
 
     if (first.value > 0.55){
-        if (first.key === 'angry'){
-            SEARCH_QUERY = "best of death metal/heavy metal"
-        } else if (first.key === 'disgusted'){
-            SEARCH_QUERY = "songs to boost mood"
-        } else if (first.key === 'fearful'){
-            SEARCH_QUERY = "relaxing music"
-        } else if (first.key === 'happy'){
-            SEARCH_QUERY = "best of groovy music"
-        } else if (first.key === 'neutral'){
-            SEARCH_QUERY = "chillstep mix"
-        } else if (first.key === 'sad'){
-            SEARCH_QUERY = "EDM"
-        } else if (first.key === 'surprised'){
-            SEARCH_QUERY = "pop"
+        if (first.name === 'angry'){
+            
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of death metal/heavy metal"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else if (first.name === 'disgusted'){
+          
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"songs to boost mood"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else if (first.name === 'fearful'){
+           
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"relaxing music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else if (first.name === 'happy'){
+          
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"best of groovy music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else if (first.name === 'neutral'){
+        
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"chillstep mix"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else if (first.name === 'sad'){
+            
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"EDM"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
+        } else {
+      
+            apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"pop"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
         }
     } else {
-        SEARCH_QUERY = "top hits music"
+        apiURL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${"top hits music"}&maxResults=${numResults}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`
+            
     }
 
-    let AMOUNT_OF_RESULTS = "25"
 
-    fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${SEARCH_QUERY}&maxResults=${AMOUNT_OF_RESULTS}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`)
+    fetch (apiURL)
     .then((response) => response.json())
     .then((data) => { 
 
         let array = []
 
         let i = 0;
-        while (array.length < 4 && i < AMOUNT_OF_RESULTS){
+        while (array.length < 4 && i < numResults){
             i++
-            let rand = Math.floor(Math.random() * AMOUNT_OF_RESULTS) 
+            let rand = Math.floor(Math.random() * numResults) 
             let item = data.items[rand]
             if (item.id.videoId !== undefined && !array.includes(item)){
                 array.push(item)

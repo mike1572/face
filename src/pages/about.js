@@ -5,7 +5,10 @@ import PropTypes from 'prop-types'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
+import GitHubIcon from '@mui/icons-material/GitHub';
+import ListItem from '@mui/material/ListItem'
 
 import {connect} from 'react-redux'
 
@@ -31,6 +34,14 @@ let About = (props) => {
                         Developped with React, Redux, Material UI, Face Api, Youtube Api, and Firebase
                     </Typography>
                 </CardContent>
+                <CardActions>
+                <GitHubIcon color='inherit' sx={{mr: 1}}/>
+                    <ListItem >
+                        <Typography fontSize='1rem' fontWeight={600} >
+                            <a href="https://github.com/mike1572/solarSystem/" rel="noreferrer" target="_blank" style={{color: 'black'}}>Code</a>
+                        </Typography>
+                    </ListItem>
+                </CardActions>
             </Card>
         )
     } else {
