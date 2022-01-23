@@ -26,7 +26,7 @@ let Recom = (props) => {
         //     api.search("test", "playlists")
         //     .then(result => console.log(result))
         // })
-    }, [])
+    // }, [])
 
 
     if (!homepage){
