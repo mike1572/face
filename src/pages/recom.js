@@ -8,10 +8,30 @@ import Music from '../components/Music';
 //Redux
 import {connect} from 'react-redux';
 import { CircularProgress } from '@mui/material';
-// import YoutubeMusicApi from 'youtube-music-api';
+// import googleapi
+const {google} = require('googleapis');
+
 
 // MUI
 import Grid from '@mui/material/Grid';
+
+  // Make sure the client is loaded before calling this method.
+  function execute() {
+    return google.client.youtube.search.list({
+      "part": [
+        "snippet"
+      ],
+      "maxResults": 1,
+      "q": "death metal"
+    })
+        .then(function(response) {
+                // Handle the results here (response.result has the parsed body).
+                console.log("Response", response);
+              },
+              function(err) { console.error("Execute error", err); });
+  }
+  google.load("client");
+
 
 let Recom = (props) => {
 
@@ -27,7 +47,6 @@ let Recom = (props) => {
         //     .then(result => console.log(result))
         // })
     // }, [])
-
 
     if (!homepage){
 

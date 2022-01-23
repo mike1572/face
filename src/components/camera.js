@@ -12,6 +12,8 @@ import Box from '@mui/material/Box'
 
 import * as faceapi from 'face-api.js'
 import { Typography } from '@mui/material';
+import * as gapi from 'googleapis'
+import {loadClient} from '../api/api.js'
 
 
 let Camera = (props) => {
@@ -78,6 +80,10 @@ let Camera = (props) => {
         }, 500)
         setIntervalId(inter)
     }
+
+    useEffect(() => {
+        loadClient
+    } , [])
 
 
     useEffect(()=> {
