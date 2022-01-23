@@ -8,7 +8,9 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import GitHubIcon from '@mui/icons-material/GitHub';
-import ListItem from '@mui/material/ListItem'
+import ListItem from '@mui/material/ListItem';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 
 import {connect} from 'react-redux'
 
@@ -35,12 +37,13 @@ let About = (props) => {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                <GitHubIcon color='inherit' sx={{mr: -0.5, ml: 1}}  />
-                    <ListItem >
-                        <Typography fontSize='1rem' fontWeight={600} >
-                            <a href="https://github.com/mike1572/face" rel="noreferrer" target="_blank" style={{color: 'black'}}>Code</a>
-                        </Typography>
-                    </ListItem>
+                    <a href="https://github.com/mike1572/face" rel="noreferrer" target="_blank" style={{color: 'black'}}>
+                        <Tooltip title="https://github.com/mike1572/face" placement="bottom" arrow>
+                            <GitHubIcon color='inherit' sx={{mr: -0.5, ml: 1, mb: 1}}  />  
+                        </Tooltip>
+                    </a>
+                    
+              
                 </CardActions>
             </Card>
         )
