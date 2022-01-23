@@ -9,7 +9,6 @@ import {
 
 export const getRecomPage = (expressions) => (dispatch) => {
 
-    console.log(expressions.angry)
     dispatch({
         type: SWITCH_PAGE,
         payload: false
@@ -34,35 +33,49 @@ export const getRecomPage = (expressions) => (dispatch) => {
             second.value = value
         }
     }
+  
+    let SEARCH_QUERY = ""
 
-    console.log(first, second)
-    // angry: 0.029884401708841324
-    // disgusted: 0.9335694909095764
-    // fearful: 0.00033626012736931443
-    // happy: 0.006967954337596893
-    // neutral: 0.017639966681599617
-    // sad: 0.01113971509039402
-    // surprised: 0.0004622840497177094
+    if (first.value > 0.55){
+        if (first.key === 'angry'){
+            SEARCH_QUERY = "best of death metal/heavy metal"
+        } else if (first.key === 'disgusted'){
+            SEARCH_QUERY = "songs to boost mood"
+        } else if (first.key === 'fearful'){
+            SEARCH_QUERY = "relaxing music"
+        } else if (first.key === 'happy'){
+            SEARCH_QUERY = "best of groovy music"
+        } else if (first.key === 'neutral'){
+            SEARCH_QUERY = "chillstep"
+        } else if (first.key === 'sad'){
+            SEARCH_QUERY = "EDM"
+        } else if (first.key === 'surprised'){
+            SEARCH_QUERY = "pop"
+        }
+    } else {
+        SEARCH_QUERY = "top hits"
+    }
 
-
-
-
-
-
-
-
-
-    let SEARCH_QUERY = "happy"
-    let AMOUNT_OF_RESULTS = "4"
+    let AMOUNT_OF_RESULTS = "30"
 
     fetch (`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${SEARCH_QUERY}&maxResults=${AMOUNT_OF_RESULTS}&key=AIzaSyApBfZ6G7AIYwcmOZYI99l_YtsMZ-_vDFs`)
     .then((response) => response.json())
     .then((data) => { 
-        console.log(data.items)
+
+        let array = []
+
+        while (array.length < 4){
+            let rand = Math.floor(Math.random() * AMOUNT_OF_RESULTS) 
+            let item = data.items[rand]
+            if (item.id.videoId !== undefined && !array.includes(item)){
+                array.push(item)
+            }
+            
+        }
 
         dispatch({
             type: SET_MUSICS,
-            payload: data.items
+            payload: array
         })
 
         dispatch({
