@@ -38,7 +38,7 @@ Here are a couple of steps that you can follow to quickly get started with the p
 
 There are many more commands, which you can familiarise yourself with on the [Create a React App](https://create-react-app.dev/) website, or in [npm's](https://docs.npmjs.com/) documentation.
 
-#API Key
+## API Key
 As we use `googleapis` YouTube v3 API for sending search queries to YouTube, the user must provide their own API key from [Google Cloud Console](https://cloud.google.com/). Please be aware that 1 search call costs 100 units and that a standard user has 10,000 units per day. Once the user obtains their API key, `src/apikey.js` needs to be created and should only contain 1 line: `export const YOUTUBE_API_KEY = "<key goes here>"`. Once that is done, restart the project and everything should work!
 
 ## Disclaimers
